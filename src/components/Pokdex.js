@@ -1,3 +1,4 @@
+import './Pokdex.css';
 import React, { Component } from 'react';
 import PokCard from './PokCard';
 
@@ -24,7 +25,9 @@ class Pokdex extends Component {
     return (
       <div className="Pokdex">
         <h1>Pokdex!</h1>
-        {this.renderContent()}
+        <div className="Pokdex-cards">
+          {this.renderContent()}
+        </div>
       </div>
     );
   }

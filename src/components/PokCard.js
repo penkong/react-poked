@@ -10,10 +10,10 @@ class PokCard extends Component {
 
     return (
       <div className="PokCard">
-        <h1>{name}</h1>
+        <h1 className="PokCard-title">{name}</h1>
         <img src={imgSrc} alt={name}/>
-        <div>Type: {type}</div>
-        <div>exp: {exp}</div>
+        <div className="PokCard-data">Type: {type}</div>
+        <div className="PokCard-data">exp: {exp}</div>
       </div>
     );
   }

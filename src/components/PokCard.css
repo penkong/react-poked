@@ -1,3 +1,16 @@
 .PokCard {
-  border: 2px solid seagreen;
+  /* border: 2px solid rgba(0, 0, 0, 0.1); */
+  width: 13rem;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: .5rem 1rem 1rem -.5rem rgba(0, 0, 0, 0.55);
+  text-align: center;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.PokCard-title {}
+
+.PokCard-data {
+  font-size: 80%;
 }
