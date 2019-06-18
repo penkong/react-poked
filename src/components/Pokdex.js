@@ -10,10 +10,14 @@ class Pokdex extends Component {
     })
   }
   render() {
+    const {exp, isWinner} = this.props;
+    let title;
+    if(isWinner) title = <h1 className="Pokdex-winner">winner hand</h1>
+    else title = <h1 className="Pokdex-loser">loser hand</h1>
     return (
       <div className="Pokdex">
-        <p>total: {this.props.exp}</p>
-        <p>{this.props.isWinner ? 'winner' : 'loser'}</p>
+        {title}
+        <h3>total: {exp}</h3>
         <div className="Pokdex-cards">
           {this.renderContent()}
         </div>

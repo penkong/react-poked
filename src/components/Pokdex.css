@@ -1,7 +1,17 @@
-.Pokdex {}
+.Pokdex {
+  text-align: center;
+}
 
 .Pokdex-cards {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap
+}
+
+.Pokdex-winner {
+  color: greenyellow;
+}
+
+.Pokdex-loser {
+  color: red;
 }
