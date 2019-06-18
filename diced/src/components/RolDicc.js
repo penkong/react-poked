@@ -1,3 +1,4 @@
+import './RolDicc.css';
 import React, { Component } from 'react';
 import Dicc from './Dicc';
 
@@ -14,9 +15,11 @@ class RolDicc extends Component {
   }
   render() {
     return (
-      <div>
-        <Dicc face={this.state.dicc1}/>
-        <Dicc face={this.state.dicc2}/>
+      <div className="RolDicc">
+        <div className="RolDicc-container">
+          <Dicc face={this.state.dicc1}/>
+          <Dicc face={this.state.dicc2}/>
+        </div>
         <button onClick={this.roll}>Roll Dicc!</button>
       </div>
     );
