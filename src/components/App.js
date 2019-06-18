@@ -1,17 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
-import PokCard from './PokCard';
+import Pokdex from './Pokdex';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <PokCard
-          id={4}
-          name="Charmander"
-          type="fire"
-          exp="62"
-        />
+        <Pokdex/>
       </div>
     );
   }
