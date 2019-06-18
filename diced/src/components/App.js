@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react';
-import PokGame from './PokGame';
+import Dicc from './Dicc';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <PokGame/>
+        <Dicc face="five"/>
+        <Dicc face="six"/>
       </div>
     );
   }
