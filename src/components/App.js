@@ -1,12 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
-import Pokdex from './Pokdex';
+import PokGame from './PokGame';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Pokdex/>
+        <PokGame/>
       </div>
     );
   }
