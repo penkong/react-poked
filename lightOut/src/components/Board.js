@@ -75,14 +75,23 @@ class Board extends Component {
   /** Render game board or winning message. */
 
   render() {
-    return (
     // if the game is won, just show a winning msg & render nothing else
-
     // TODO
-
     // make table board
-      <table>
-        {this.createBoard()}
+    let tBoard = [];
+    let { nrows, ncols} = this.props;
+    for (let y = 0; y < nrows; y++) {
+      let row = [];
+      for (let x = 0; x < ncols; x++) {
+        row.push(<Cell isLit={this.state.board[y][x]}/>)        
+      }
+      tBoard.push(<tr>{row}</tr>)
+    }
+    return (
+      <table className="Board">
+        <tbody>
+          {tBoard}
+        </tbody>
       </table>
     // TODO
     );
