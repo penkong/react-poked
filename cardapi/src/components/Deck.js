@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Card from './Card';
 
 
 
@@ -33,12 +34,17 @@ class Deck extends Component {
       alert(err);
     }
   }
-
+  renderCard(){
+    return this.state.drawn.map(card =>{
+      return <Card key={card.id} name={card.name} image={card.image} />
+    })
+  }
   render() {
     return (
       <div>
         <h1>Card dealer</h1>
         <button onClick={this.getCard}>get Card!</button>
+        {this.renderCard()}
       </div>
     );
   }
