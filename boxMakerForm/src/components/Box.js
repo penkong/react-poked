@@ -12,7 +12,7 @@ class Box extends Component {
           }
         }>
         </div>
-        <button>X</button>  
+        <button onClick={this.props.removeBox}>X</button>  
       </div>
     );
   }
