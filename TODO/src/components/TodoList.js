@@ -6,7 +6,16 @@ import TodoForm from './TodoForm';
 // removeTodo = id from todoForm => todoList => todo
 class TodoList extends Component {
   state = { todos : [] };
-  
+  //for ui
+  toggleCompletion = id => {
+    const updatedTodos = this.state.todos.map( todo => {
+      if(todo.id === id) {
+        return {...this.state.todos, completed: !todo.completed }
+      }
+      return todo;
+    })
+    this.setState({ todos: updatedTodos });
+  }
   updateTodo = (id, updatedTask) => {
     const updatedTodos = this.state.todos.map( todo => {
       if(todo.id === id) {
@@ -32,6 +41,8 @@ class TodoList extends Component {
         key={todo.id} 
         id={todo.id}
         task={todo.task}
+        toggleCompletion={this.toggleCompletion}
+        completed={todo.completed}
         updateTodo={this.updateTodo}
         removeTodo={this.removeTodo}
       /> 

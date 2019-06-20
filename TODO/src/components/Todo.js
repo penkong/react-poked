@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
+import './Todo.css';
 class Todo extends Component {
   state = { isEditing: false , task: this.props.task };
+  handleToggle = e => this.props.toggleCompletion(this.props.id)
   handleSubmitUpdate = e => {
     e.preventDefault();
     this.props.updateTodo(this.props.id , this.state.task);
@@ -10,7 +11,7 @@ class Todo extends Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
   toggleForm = () => this.setState({ isEditing: true });
   handleRemove = () => this.props.removeTodo(this.props.id);
-  renderContent(){
+  renderContent =() => {
     if(this.state.isEditing){
       return (
         <div>
@@ -27,10 +28,15 @@ class Todo extends Component {
       )
     }
     return (
-      <div>
+      <div className="Todo" key={this.props.id}>
         <button onClick={this.toggleForm}>Edit</button>
         <button onClick={this.handleRemove}>X</button>
-        <li>{this.props.task}</li>
+        <li 
+          className={this.props.completed ? "completed" : ""}
+          onClick={this.handleToggle}
+        >
+          {this.props.task}
+        </li>
       </div>
     )
   }

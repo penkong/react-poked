@@ -3,15 +3,15 @@ import uuid from 'uuid/v4';
 
 class TodoForm extends Component {
   state = {task: ""};
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.createTodo({ ...this.state,completed: false, id: uuid() });
+    this.setState({ task: "" }); //reset form after submit
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
-  }
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.createTodo({ ...this.state, id: uuid() });
-    this.setState({ task: "" }); //reset form after submit
   }
   render() {
     return (
