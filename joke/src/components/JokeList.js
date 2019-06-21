@@ -8,10 +8,15 @@ class JokeList extends Component {
   static defaultProps = {
     numJokesToGet: 10
   }
-  state = { jokes: JSON.parse(window.localStorage.getItem("jokes")) || [] };
+  state = { 
+    jokes: JSON.parse(window.localStorage.getItem("jokes")) || [],
+    loading: false
+  };
   componentDidMount() {
     if(!this.state.jokes.length) this.getJokes();
   }
+
+
   getJokes = async () => {
     const jokes = [];
     while (jokes.length < this.props.numJokesToGet) {
@@ -19,16 +24,28 @@ class JokeList extends Component {
       const res = await axios.get(url, {headers:{ Accept: 'application/json'}});
       jokes.push({id: uuid(), text: res.data.joke, votes: 0 });
     }
-    this.setState({ jokes });
-    window.localStorage.setItem("jokes", JSON.stringify(jokes));
+    this.setState(oldState => ({
+      loading: false,
+      jokes: [...oldState.jokes, ...jokes]
+    }), 
+      ()=> window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
+
+
+  handleClick = () => {
+    this.setState({loading: true}, this.getJokes);
+  };
+
 
   handleVote = (id, delta) => {
     this.setState(oldState => ({
       jokes: oldState.jokes.map(
         j => j.id === id ? {...j, votes: j.votes + delta} : j
       )
-    }))
+    }), 
+      ()=> window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
 
   renderContent(){
@@ -44,10 +61,12 @@ class JokeList extends Component {
   }
 
   render() {
+    if(this.state.loading) return <div>Loading</div>
     return (
       <div className="JokesList">
       <div className="JokesList-sidebar">
-        <h1 className="JokesList-title">Dad Jokes</h1>   
+        <h1 className="JokesList-title">Dad Jokes</h1>
+        <button onClick={this.handleClick}>new Jokes</button>   
       </div>
         <div className="JokeList-jokes">
           {this.renderContent()}
