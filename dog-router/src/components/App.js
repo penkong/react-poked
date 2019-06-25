@@ -7,6 +7,7 @@ import whiskey from '../images/whiskey.jpg';
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import DogList from "./DogList";
+import DogDetails from "./DogDetails";
 
 /** Simple app that just shows the LightsOut game. */
 
@@ -45,8 +46,18 @@ class App extends Component {
     ]
   };
   render() {
+    const getDog = props => {
+      let name = props.match.params.name;
+      let currentDog = this.props.dogs.find(
+        dog => dog.name.toLowerCase() === name.toLowerCase()
+      );
+      return <DogDetails {...props} dog={currentDog}/>
+    }
     return (
-      <Route path="/dogs" render={()=> <DogList  dogs={this.props.dogs}/> } />
+      <Switch>
+        <Route path="/dogs" exact render={()=> <DogList  dogs={this.props.dogs}/> } />
+        <Route path="/dogs/:name" exact render={getDog} />
+      </Switch>
     );
   }
 }
