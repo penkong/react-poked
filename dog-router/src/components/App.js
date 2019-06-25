@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import DogList from "./DogList";
 import DogDetails from "./DogDetails";
+import Navbar from "./Navbar";
 
 /** Simple app that just shows the LightsOut game. */
 
@@ -54,10 +55,13 @@ class App extends Component {
       return <DogDetails {...props} dog={currentDog}/>
     }
     return (
-      <Switch>
-        <Route path="/dogs" exact render={()=> <DogList  dogs={this.props.dogs}/> } />
-        <Route path="/dogs/:name" exact render={getDog} />
-      </Switch>
+      <div>
+        <Navbar dogs={this.props.dogs}/>
+        <Switch>
+          <Route path="/dogs" exact render={()=> <DogList  dogs={this.props.dogs}/> } />
+          <Route path="/dogs/:name" exact render={getDog} />
+        </Switch>
+      </div>
     );
   }
 }
