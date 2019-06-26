@@ -9,6 +9,7 @@ import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import Slider from 'rc-slider';
 
 const styles = [
@@ -49,7 +50,6 @@ class Navbar extends Component {
         <CloseIcon/>
       </IconButton>
     ];
-
     return (
       <Snackbar 
         anchorOrigin={anchorOrigin}
@@ -107,7 +107,7 @@ class Navbar extends Component {
   renderLogo(){
     return(
       <div className="logo">
-        <a href="/">ReactUICOLORS</a>
+        <NavLink to="/">reactcolorswithit</NavLink>
       </div>
     )
   }
