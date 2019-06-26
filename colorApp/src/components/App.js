@@ -13,10 +13,10 @@ import { generatePalette } from './helpers/colorHelpers';
 class App extends Component {
   // to pass every field in props individually we use ...
   render() {
-    console.log(generatePalette(seedColors[4]));
+    // console.log(generatePalette(seedColors[4]));
     return (
       <div>
-        <Palette {...seedColors[4]}/>
+        <Palette palette={generatePalette(seedColors[4])}/>
       </div>
     );
   }
