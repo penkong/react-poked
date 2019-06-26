@@ -107,7 +107,7 @@ class Navbar extends Component {
   renderLogo(){
     return(
       <div className="logo">
-        <a href="/"></a>
+        <a href="/">ReactUICOLORS</a>
       </div>
     )
   }
