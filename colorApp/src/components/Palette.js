@@ -1,8 +1,10 @@
 import './Palette.css';
 
-
 import React, { Component } from 'react';
+
 import ColorBox from './ColorBox';
+
+
 
 
 class palette extends Component {
