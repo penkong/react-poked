@@ -1,10 +1,13 @@
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
 
-const styles = [{
+const styles = [
+  {
     backgroundColor: "transparent"
   },
   {
@@ -23,6 +26,27 @@ const styles = [{
 ]
 
 class Navbar extends Component {
+
+  state = {format: 'hex'};
+
+  handleChange = e => {
+    const { handleChange } = this.props;
+    this.setState({ format: e.target.value });
+    handleChange(e.target.value);
+  }
+
+  renderSelect(){
+    const { format } = this.state;
+    return (
+      <div className="select-container">
+        <Select value={format} onChange={this.handleChange}>
+          <MenuItem value="hex">HEX - #fff</MenuItem>
+          <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
+          <MenuItem value="rgba">RGBA - rgb(255,255,255,1.0)</MenuItem>
+        </Select>
+      </div>
+    )
+  }
 
   renderSlider(){
     const {level, changeLevel} = this.props;
@@ -46,13 +70,20 @@ class Navbar extends Component {
     )
   }
 
+  renderLogo(){
+    return(
+      <div className="logo">
+        <a href="/"></a>
+      </div>
+    )
+  }
   render() {
+    
     return (
       <header className="Navbar">
-        <div className="logo">
-          <a href="/">reactCOlorPoik</a>
-        </div>
+        {this.renderLogo()}
         {this.renderSlider()}
+        {this.renderSelect()}
       </header>
     );
   }
