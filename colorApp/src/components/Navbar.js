@@ -1,5 +1,10 @@
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
+
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
@@ -27,11 +32,40 @@ const styles = [
 
 class Navbar extends Component {
 
-  state = {format: 'hex'};
+  state = {format: 'hex', open: false};
 
-  handleChange = e => {
+  closeSnackBar = () => {
+    this.setState({open: false});
+  }
+
+  renderSnackBar(){
+    const anchorOrigin = {vertical:"bottom",horizontal:"left"};
+    const { open } = this.state;
+    const message = <span id="message-id">Format Changed!</span>;
+    //accessibility
+    const contentProps = {"aria-describedby": "message-id"};
+    const action = [
+      <IconButton onClick={this.closeSnackBar} color="inherit" key="close">
+        <CloseIcon/>
+      </IconButton>
+    ];
+
+    return (
+      <Snackbar 
+        anchorOrigin={anchorOrigin}
+        open={open}
+        autoHideDuration={3000}
+        onClose={this.closeSnackBar}
+        message={message}
+        ContentProps={contentProps}
+        action={action}
+      />
+    )
+  }
+
+  handleFormatChange = e => {
     const { handleChange } = this.props;
-    this.setState({ format: e.target.value });
+    this.setState({ format: e.target.value, open: true });
     handleChange(e.target.value);
   }
 
@@ -39,7 +73,7 @@ class Navbar extends Component {
     const { format } = this.state;
     return (
       <div className="select-container">
-        <Select value={format} onChange={this.handleChange}>
+        <Select value={format} onChange={this.handleFormatChange}>
           <MenuItem value="hex">HEX - #fff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
           <MenuItem value="rgba">RGBA - rgb(255,255,255,1.0)</MenuItem>
@@ -77,6 +111,7 @@ class Navbar extends Component {
       </div>
     )
   }
+
   render() {
     
     return (
@@ -84,6 +119,7 @@ class Navbar extends Component {
         {this.renderLogo()}
         {this.renderSlider()}
         {this.renderSelect()}
+        {this.renderSnackBar()}
       </header>
     );
   }
