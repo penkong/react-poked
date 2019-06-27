@@ -111,11 +111,11 @@ class Navbar extends Component {
   }
 
   render() {
-    
+    const { showAllColors } = this.props;
     return (
       <header className="Navbar">
         {this.renderLogo()}
-        {this.renderSlider()}
+        { showAllColors && this.renderSlider()}
         {this.renderSelect()}
         {this.renderSnackBar()}
       </header>

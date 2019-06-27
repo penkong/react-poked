@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 
 class palette extends Component {
 
@@ -19,6 +20,7 @@ class palette extends Component {
         level={this.state.level} 
         changeLevel={this.changeLevel}
         handleChange={this.changeFormat}
+        showAllColors
       />
     )
   }
@@ -38,11 +40,13 @@ class palette extends Component {
   }
   
   renderFooter(){
+    const { paletteName, emoji } = this.props.palette;
     return (
-      <footer className="Palette-footer">
-        {this.props.palette.paletteName}
-        <span className="emoji">{this.props.palette.emoji}</span>
-      </footer>
+      // <footer className="Palette-footer">
+      //   {this.props.palette.paletteName}
+      //   <span className="emoji">{this.props.palette.emoji}</span>
+      // </footer>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     )
   }
   
