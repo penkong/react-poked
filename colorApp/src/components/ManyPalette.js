@@ -2,32 +2,51 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
-  main : {
-    backgroundColor: "purple",
-    border: "3px solid teal",
-    "& h1": {
-      color: "blue",
-      "& span": {
-        background: "yellow"
-      }
-    },
+  root: {
+    backgroundColor: "white",
+    border: "1px solid black",
+    borderRadius: "4px",
+    padding: ".5rem",
+    paddingRight: ".3rem",
+    position: "relative",
+    overflow: "hidden",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
-  secondary: {
-    backgroundColor: "pink"
+  colors: {
+    backgroundColor: "grey"
+  },
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: "0",
+    color: "black",
+    paddingTop: ".5rem",
+    fontSize: "1rem",
+    position: "relative"
+  },
+  emoji: {
+    marginLeft: ".5rem",
+    marginBottom: ".45rem",
+    fontSize: "1.5rem"
   }
 }
 
 
 function MiniPalette(props) {
-  // styled component from material pass props behind named classes
+  // styled component from m aterial pass props behind named classes
   // if we cl classes we will see a specific class name produce 
   // and make that top style specific to this scope
   // cool and can write sass style components;
-  const { classes } = props;
+  const { classes, paletteName, emoji } = props;
   return (
-    <div className={classes.main}>
-      <h1>Mini Palette</h1>
-      <h1 className={classes.secondary}>Mini Palette</h1>
+    <div className={classes.root}>
+      <div className={classes.colors}></div>
+      <h5 className={classes.title}>
+        {paletteName} <span className={classes.emoji}>{emoji}</span> 
+      </h5>
     </div>
   )
 }
