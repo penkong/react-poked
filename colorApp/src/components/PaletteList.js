@@ -1,12 +1,14 @@
 import './PaletteList.css';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-// import palette from './Palette';
+import MiniPalette from './ManyPalette';
 
+// import palette from './Palette';
+// jss using styled components
+// material ui has own internal
 class PaletteList extends Component {
 
   renderPalettes(){
-
     const { palettes } = this.props;
     
     return palettes.map(palette => (
@@ -15,10 +17,14 @@ class PaletteList extends Component {
       </NavLink>
     ))
   }
+
+
   render() {
     return (
       <div>
-        {this.renderPalettes()}
+        <MiniPalette>
+          {this.renderPalettes()}
+        </MiniPalette>
       </div>
     );
   }
