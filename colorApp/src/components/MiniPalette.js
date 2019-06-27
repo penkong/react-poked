@@ -15,7 +15,19 @@ const styles = {
     }
   },
   colors: {
-    backgroundColor: "grey"
+    backgroundColor: "#daele4",
+    height: "150px",
+    width: "100%",
+    borderRadius: "5px",
+    overflow: "hidden"
+  },
+  miniBox: {
+    height: "25%",
+    width: "20%", 
+    display: "inline-block",
+    margin: "0 auto",
+    position: "relative",
+    marginBottom: "-3.5px",
   },
   title: {
     display: "flex",
@@ -40,10 +52,20 @@ function MiniPalette(props) {
   // if we cl classes we will see a specific class name produce 
   // and make that top style specific to this scope
   // cool and can write sass style components;
-  const { classes, paletteName, emoji } = props;
+  const { classes, paletteName, emoji, colors } = props;
+  const miniColorBoxes = colors.map(color => (
+    <div 
+      className={classes.miniBox} 
+      style={{backgroundColor: color.color}} 
+      key={color.name}
+    />
+  ));
+
   return (
     <div className={classes.root}>
-      <div className={classes.colors}></div>
+      <div className={classes.colors}>
+        {miniColorBoxes}
+      </div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span> 
       </h5>

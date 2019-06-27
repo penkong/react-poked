@@ -3,7 +3,7 @@ import { withStyles, mergeClasses } from '@material-ui/styles';
 
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import MiniPalette from './ManyPalette';
+import MiniPalette from './MiniPalette';
 
 // import palette from './Palette';
 // jss using styled components
@@ -11,8 +11,8 @@ import MiniPalette from './ManyPalette';
 
 const styles = {
   root: {
-    backgroundColor: "blue",
-    height: "100%",
+    backgroundColor: "lightblue",
+    height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
@@ -44,12 +44,8 @@ class PaletteList extends Component {
 
   renderPalettes(){
     const { palettes } = this.props;
-    
-    return palettes.map(palette => (
-      <MiniPalette {...palette} />        
-    ))
+    return palettes.map(palette => (<MiniPalette {...palette} />))
   }
-
 
   render() {
     const { classes } = this.props;
