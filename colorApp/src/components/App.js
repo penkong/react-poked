@@ -5,8 +5,9 @@ import { Switch, Route } from "react-router-dom";
 
 import PaletteList from "./PaletteList"; 
 import Palette from "./Palette";
-import seedColors from "./seedColors";
+import SingleColorPalette from "./SingleColorPalette";
 
+import seedColors from "./seedColors";
 import { generatePalette } from './helpers/colorHelpers';
 
 /** Simple app that just shows the LightsOut game. */
@@ -33,7 +34,7 @@ class App extends Component {
           }
         />
         <Route exact path="/palette/:paletteId/:colorId" 
-          render={(routeProps)=> <h1>hello third</h1>}
+          render={(routeProps)=> <SingleColorPalette/>}
         />
       </Switch>
       // <div>
