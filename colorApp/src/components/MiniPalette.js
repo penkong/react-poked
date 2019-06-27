@@ -1,6 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-
+// styled component from m aterial pass props behind named classes
+// if we cl classes we will see a specific class name produce 
+// and make that top style specific to this scope
+// cool and can write sass style components;
 const styles = {
   root: {
     backgroundColor: "white",
@@ -46,13 +49,10 @@ const styles = {
   }
 }
 
-
 function MiniPalette(props) {
-  // styled component from m aterial pass props behind named classes
-  // if we cl classes we will see a specific class name produce 
-  // and make that top style specific to this scope
-  // cool and can write sass style components;
+  
   const { classes, paletteName, emoji, colors } = props;
+
   const miniColorBoxes = colors.map(color => (
     <div 
       className={classes.miniBox} 
@@ -62,7 +62,7 @@ function MiniPalette(props) {
   ));
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={props.handleClick}>
       <div className={classes.colors}>
         {miniColorBoxes}
       </div>

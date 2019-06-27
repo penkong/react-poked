@@ -2,7 +2,7 @@ import './PaletteList.css';
 import { withStyles, mergeClasses } from '@material-ui/styles';
 
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 
 // import palette from './Palette';
@@ -42,9 +42,14 @@ const styles = {
 }
 class PaletteList extends Component {
 
+  goToPalette = id => {
+    this.props.history.push(`/palette/${id}`);
+  }
   renderPalettes(){
     const { palettes } = this.props;
-    return palettes.map(palette => (<MiniPalette {...palette} />))
+    return palettes.map(palette => (
+      <MiniPalette {...palette} handleClick={()=>this.goToPalette(palette.id)}/>
+    ))
   }
 
   render() {
