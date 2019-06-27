@@ -10,13 +10,20 @@ class palette extends Component {
 
   state = {level: 500 , format: 'hex'};
 
-  changeFormat = val => {
-    this.setState({format: val});
-  }
-
   changeLevel = level => this.setState({level});
+  changeFormat = val => this.setState({format: val});
   
-  renderBox(){
+  renderNavBar(){
+    return (
+      <Navbar 
+        level={this.state.level} 
+        changeLevel={this.changeLevel}
+        handleChange={this.changeFormat}
+      />
+    )
+  }
+  
+  renderBoxes(){
     const { level, format } = this.state;
     return this.props.palette.colors[level].map(color => (
         <ColorBox key={color.id} background={color[format]} name={color.name}/>
@@ -24,21 +31,23 @@ class palette extends Component {
     )
   }
   
+  renderFooter(){
+    return (
+      <footer className="Palette-footer">
+        {this.props.palette.paletteName}
+        <span className="emoji">{this.props.palette.emoji}</span>
+      </footer>
+    )
+  }
+  
   render() {
     return (
       <div className="Palette">
-        <Navbar 
-          level={this.state.level} 
-          changeLevel={this.changeLevel}
-          handleChange={this.changeFormat}
-        />
+        {this.renderNavBar()}
         <div className="Palette-colors">
-          {this.renderBox()}
+          {this.renderBoxes()}
         </div>
-        <footer className="Palette-footer">
-          {this.props.palette.paletteName}
-          <span className="emoji">{this.props.palette.emoji}</span>
-        </footer>
+        {this.renderFooter()}
       </div>
     );
   }
