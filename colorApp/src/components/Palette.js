@@ -31,6 +31,7 @@ class palette extends Component {
           background={color[format]} 
           name={color.name}
           moreUrl={`/palette/${this.props.palette.id}/${color.id}`}
+          showLink={true}
         />
       ) 
     )
