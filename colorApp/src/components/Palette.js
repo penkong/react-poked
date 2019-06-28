@@ -6,10 +6,6 @@ import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import styles from '../styles/PaletteStyles';
 
-import './Palette.css';
-
-
-
 class palette extends Component {
 
   state = {level: 500 , format: "hex"};

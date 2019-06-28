@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import MiniPalette from './MiniPalette';
 import styles from '../styles/PaletteListStyles';
-import './PaletteList.css';
 // jss using styled components
 // material ui has own internal
 class PaletteList extends Component {

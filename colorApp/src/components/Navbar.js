@@ -1,62 +1,43 @@
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-import 'rc-slider/assets/index.css';
-import './Navbar.css';
-
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import Slider from 'rc-slider';
-
-const styles = [
-  {
-    backgroundColor: "transparent"
-  },
-  {
-    height: "8px"
-  },
-  {
-    backgroundColor: "green",
-    outline: "none",
-    border: "2px solid green",
-    boxShadow: "none",
-    width: "14px",
-    height: "14px",
-    marginLeft: "-5px",
-    marginTop: "-3px"
-  }
-]
+import styles from '../styles/NavBarStyles';
+import 'rc-slider/assets/index.css';
 
 class Navbar extends Component {
   // open is state related to snack bar for close
   state = {format: 'hex', open: false};
 
   renderLogo(){
+    const { classes } = this.props
     return(
-      <div className="logo">
+      <div className={classes.logo}>
         <NavLink to="/">reactcolorswithit</NavLink>
       </div>
     )
   }
 
   renderSlider(){
-    const {level, changeLevel} = this.props;
+    const {level, changeLevel, classes} = this.props;
     return (
-      <div className="slider-container">
+      <div className={classes.selectContainer}>
         <span>Level: {level}</span>
-        <div className="slider">
+        <div className={classes.slider}>
           <Slider 
-              defaultValue={level} 
-              min={100} 
-              max={900}
-              step={100}
-              onAfterChange={changeLevel}
-              trackStyle={styles[0]}
-              railStyle={styles[1]}
-              handleStyle={styles[2]}
+            defaultValue={level} 
+            min={100} 
+            max={900}
+            step={100}
+            onAfterChange={changeLevel}
+            // trackStyle={trackStyle}
+            // railStyle={railStyle}
+            // handleStyle={handleStyle}
           />
         </div>
       </div>
@@ -73,8 +54,10 @@ class Navbar extends Component {
 
   renderSelect(){
     const { format } = this.state;
+    const { classes } = this.props;
+
     return (
-      <div className="select-container">
+      <div className={classes.selectContainer}>
         <Select value={format} onChange={this.handleFormatChange}>
           <MenuItem value="hex">HEX - #fff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
@@ -111,9 +94,9 @@ class Navbar extends Component {
   }
 
   render() {
-    const { showAllColors } = this.props;
+    const { showAllColors, classes } = this.props;
     return (
-      <header className="Navbar">
+      <header className={classes.Navbar}>
         {this.renderLogo()}
         { showAllColors && this.renderSlider()}
         {this.renderSelect()}
@@ -123,4 +106,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
