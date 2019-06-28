@@ -9,7 +9,7 @@ import PaletteFooter from './PaletteFooter';
 
 class palette extends Component {
 
-  state = {level: 500 , format: 'hex'};
+  state = {level: 500 , format: "hex"};
 
   changeLevel = level => this.setState({level});
   changeFormat = val => this.setState({format: val});

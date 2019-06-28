@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 //with router give us history obj a.nd .. props
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import palette from './Palette';
 
 
 class ColorBox extends Component {
@@ -20,7 +19,7 @@ class ColorBox extends Component {
     const { name, background, moreUrl, showLink } = this.props;
     const { copied } = this.state;
     return (
-      <CopyToClipboard onCopy={this.changeCopyState} text={background}>
+      <CopyToClipboard  onCopy={this.changeCopyState} text={background}>
         <div className="ColorBox" style={{background}}>
 
           {/* these will show on onCopy */}
