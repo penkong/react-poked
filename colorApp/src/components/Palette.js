@@ -1,11 +1,23 @@
-
-import './Palette.css';
-
 import React, { Component } from 'react';
+import { withStyles } from "@material-ui/styles";
 
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import './Palette.css';
+
+const styles = {
+  Palette: {
+    height: "97vh",
+    width: "100vw",
+    margin: "0",
+    display: "flex",
+    flexDirection: "column",
+  },
+  colors: {
+    height: "90%",
+  }
+}
 
 class palette extends Component {
 
@@ -42,19 +54,16 @@ class palette extends Component {
   renderFooter(){
     const { paletteName, emoji } = this.props.palette;
     return (
-      // <footer className="Palette-footer">
-      //   {this.props.palette.paletteName}
-      //   <span className="emoji">{this.props.palette.emoji}</span>
-      // </footer>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     )
   }
   
   render() {
+    const { classes } = this.props;
     return (
-      <div className="Palette">
+      <div className={classes.Palette}>
         {this.renderNavBar()}
-        <div className="Palette-colors">
+        <div className={classes.colors}>
           {this.renderBoxes()}
         </div>
         {this.renderFooter()}
@@ -63,4 +72,4 @@ class palette extends Component {
   }
 }
 
-export default palette;
+export default withStyles(styles)(palette);
