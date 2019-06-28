@@ -5,50 +5,9 @@ import { Link } from 'react-router-dom';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import styles from '../styles/PaletteStyles';
 
-const styles = {
-  Palette: {
-    height: "97vh",
-    width: "100vw",
-    margin: "0",
-    display: "flex",
-    flexDirection: "column",
-  },
-  colors: {
-    height: "90%",
-  },
-  goBack: {
-    width: "20%",
-    height: "50%",
-    margin: "0 auto",
-    display: "inline-block",
-    position: "relative",
-    cursor: "pointer",
-    marginBottom: "-4.5px",
-    opacity: 1,
-    backgroundColor: "black",
-    "& a": {
-      position: "absolute",
-      display: "inline-block",
-      width: "100px",
-      height: "30px",
-      top: "50%",
-      left: "50%",
-      marginLeft: "-50px",
-      marginTop: "-15px",
-      textAlign: "center",
-      outline: "none",
-      background: "rgba(255,255,255,0.3)",
-      fontSize: "1rem",
-      lineHeight: "30px",
-      color: "white",
-      textTransform: "uppercase",
-      border: "none",
-      cursor: "pointer",
-      textDecoration: "none",
-    }
-  }
-}
+
 
 class SingleColorPalette extends Component {
 
