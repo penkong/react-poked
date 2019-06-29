@@ -108,12 +108,25 @@ class NewPaletteForm extends Component {
     this.setState({open: false });
   }
   //-----------------1
+
+  handleSubmit = () => {
+    let newName = "new test"
+    const newPalette = { 
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, '-'),
+      colors: this.state.colors
+    };
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
   renderAppBar(){
     const { classes } = this.props;
     const { open } = this.state;
     return (
       <AppBar
         position="fixed"
+        color="default"
         className={classnames(classes.appBar, {[classes.appBarShift]: open,})}
       >
         <Toolbar>
@@ -129,6 +142,7 @@ class NewPaletteForm extends Component {
           <Typography variant="h6" color="inherit" noWrap>
             React Colors
           </Typography>
+          <Button variant="contained" color="primary" onClick={this.handleSubmit}>Save Palette</Button>
         </Toolbar>
       </AppBar>
     )

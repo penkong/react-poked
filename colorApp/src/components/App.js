@@ -12,18 +12,27 @@ import { generatePalette } from './helpers/colorHelpers';
 /** Simple app that just shows the LightsOut game. */
 
 class App extends Component {
-  findPalette(id){
-    return seedColors.find(palette => {
+
+  state = { palette: seedColors };
+
+  findPalette = id => {
+    return this.state.palette.find(palette => {
       return palette.id === id;
     })
   }
+
+  savePalette = newPalette => {
+    this.setState({ palette : [...this.state.palette, newPalette]})
+  }
+
   // to pass every field in props individually we use ...
   render() {
     // console.log(generatePalette(seedColors[4]));
     return (
       <Switch>
         <Route exact path="/palette/new" 
-          render={(routeProps)=> <NewPaletteForm />}
+          render={(routeProps)=> 
+            <NewPaletteForm {...routeProps} savePalette={this.savePalette} />}
         />
         <Route exact path="/palette/:paletteId/:colorId" 
           render={(routeProps)=> 
@@ -34,7 +43,7 @@ class App extends Component {
           }
         />
         <Route exact path="/" 
-          render={(routeProps)=><PaletteList palettes={seedColors} 
+          render={(routeProps)=><PaletteList palettes={this.state.palette} 
             {...routeProps}/>
           }
         />
