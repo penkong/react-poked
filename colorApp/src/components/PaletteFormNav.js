@@ -10,6 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteMetaForm from './PaletteMetaForm';
+
+
 
 const drawerWidth = 400;
 const styles = makeStyles(theme => ({
@@ -43,18 +46,11 @@ const styles = makeStyles(theme => ({
 
 class PaletteFormNav extends Component {
   state = {newPaletteName: ""};
-  componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-      this.props.palette.every(({paletteName}) => (
-        paletteName.toLowerCase() !== value.toLowerCase()
-      ))
-    })
-  }
+  
   handleChange = e => this.setState({[e.target.name]: e.target.value});
   
   render() {
-    const { open , classes, handleSubmit, handleDrawerOpen } = this.props;
-    const { newPaletteName } = this.state;
+    const { open , classes, handleDrawerOpen, palette, handleSubmit } = this.props;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -78,22 +74,10 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navButtons}>
-            <ValidatorForm onSubmit={()=>handleSubmit(newPaletteName)}>
-              <TextValidator
-                label="Palette Name"
-                name="newPaletteName"
-                value={newPaletteName}
-                onChange={this.handleChange}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={["Enter Palette Name", "Palette Name Already Taken"]}
-              />
-              <Button variant="contained" 
-                color="primary" 
-                type="submit"
-              >
-                Save Palette
-              </Button>
-            </ValidatorForm>
+            <PaletteMetaForm 
+              palette={palette}
+              handleSubmit={handleSubmit}
+            />
             <NavLink to="/">
               <Button variant="contained" color="secondary">
                 go back
