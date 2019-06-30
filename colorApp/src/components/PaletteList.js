@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import MiniPalette from './MiniPalette';
 import styles from '../styles/PaletteListStyles';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // jss using styled components
 // material ui has own internal
 class PaletteList extends Component {
@@ -13,13 +14,15 @@ class PaletteList extends Component {
   renderPalettes(){
     const { palettes, deletePalette } = this.props;
     return palettes.map(palette => (
-      <MiniPalette 
-        key={palette.id}
-        id={palette.id}
-        deletePalette={deletePalette}
-        {...palette} 
-        handleClick={()=>this.goToPalette(palette.id)}
-      />
+      <CSSTransition classNames="fade" timeout={500} key={palette.id}>
+        <MiniPalette 
+          key={palette.id}
+          id={palette.id}
+          deletePalette={deletePalette}
+          {...palette} 
+          handleClick={()=>this.goToPalette(palette.id)}
+        />
+      </CSSTransition>
     ))
   }
 
@@ -34,9 +37,9 @@ class PaletteList extends Component {
             <NavLink to="/palette/new">Create</NavLink>
           </nav>
           
-          <div className={classes.palettes}>
+          <TransitionGroup className={classes.palettes}>
             {this.renderPalettes()}
-          </div>
+          </TransitionGroup>
 
         </div>
       </div>

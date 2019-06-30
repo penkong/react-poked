@@ -1,6 +1,16 @@
 import sizes from './sizes';
 import bg from './Flat-Mountains.svg';
 export default  {
+  "@global": {
+    // it means reference prefix in any file here
+    ".fade-exit": {
+      opacity: 1
+    },
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-out",
+    },
+  },
   root: {
     height: "100%",
     display: "flex",
