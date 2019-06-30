@@ -1,13 +1,17 @@
 import sizes from './sizes';
-
+import bg from './Flat-Mountains.svg';
 export default  {
   root: {
-    backgroundColor: "lightblue",
-    height: "100vh",
+    height: "100%",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
-
+    backgroundColor: "#ff7700",
+    backgroundImage: `url(${bg})`,
+    overFlow: "scroll"
+  },
+  heading: {
+    fontSize: "2rem",
   },
   container: {
     width: "70%",

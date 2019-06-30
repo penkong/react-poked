@@ -30,7 +30,7 @@ class PaletteList extends Component {
         <div className={classes.container}>
           
           <nav className={classes.nav}>
-            <h1>React Picker</h1>
+            <h1 className={classes.heading}>React Picker</h1>
             <NavLink to="/palette/new">Create</NavLink>
           </nav>
           
