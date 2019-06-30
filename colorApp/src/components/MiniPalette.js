@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from '../styles/MiniPaletteStyles';
@@ -7,13 +7,17 @@ import styles from '../styles/MiniPaletteStyles';
 // and make that top style specific to this scope
 // cool and can write sass style components;
 
-class MiniPalette extends Component {
+//purrComponent make sure component rerender if nextProps is different
+class MiniPalette extends PureComponent {
   deletePalette = e => {
     e.stopPropagation();
     this.props.openDialog(this.props.id);
   }
+  handleClick = () => {
+    this.props.goToPalette(this.props.id);
+  }
   render() {
-    const { classes, paletteName, emoji, colors, handleClick } = this.props;
+    const { classes, paletteName, emoji, colors } = this.props;
   
     const miniColorBoxes = colors.map(color => (
       <div 
@@ -23,7 +27,7 @@ class MiniPalette extends Component {
       />
     ));
     return (
-      <div className={classes.root} onClick={handleClick}>
+      <div className={classes.root} onClick={this.handleClick}>
         <DeleteIcon 
           className={classes.deleteIcon} 
           style={{transition: "all .3s ease-in-out"}}
