@@ -8,7 +8,6 @@ import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 import Page from "./Page";
 
-
 import seedColors from "./seedColors";
 import { generatePalette } from './helpers/colorHelpers';
 
@@ -81,6 +80,17 @@ class App extends Component {
                 render={(routeProps)=> (
                   <Page>
                     <Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))}/>
+                  </Page>
+                )}
+              />
+              {/* kind of 404 page */}
+              <Route 
+                render={(routeProps)=>(
+                  <Page>
+                    <PaletteList 
+                    deletePalette={this.deletePalette}
+                    palettes={this.state.palette} 
+                    {...routeProps}/>
                   </Page>
                 )}
               />

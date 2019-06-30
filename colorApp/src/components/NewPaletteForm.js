@@ -12,6 +12,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import { arrayMove } from "react-sortable-hoc";
 import styles from '../styles/NewPaletteFormStyles';
+import seedColors from './seedColors';
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -22,7 +23,7 @@ class NewPaletteForm extends Component {
   // const [open, setOpen] = React.useState(false);
   state = { 
     open: true, 
-    colors: this.props.palette[0].colors, 
+    colors: seedColors[0].colors, 
   };
   //--------------------------------
   handleDrawerOpen = () => {
@@ -45,9 +46,15 @@ class NewPaletteForm extends Component {
   clearColors = () => this.setState({ colors: [] });
   addRandomColor = () => {
     const allColors = this.props.palette.map(p => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    const randomColors = allColors[rand];
-    this.setState({colors: [...this.state.colors, randomColors]});
+    let rand;
+    let randomColor;
+    let colorIsDuplicate = true;
+    while(colorIsDuplicate){
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      colorIsDuplicate = this.state.colors.some(color=> color.name === randomColor.name);
+    }
+    this.setState({colors: [...this.state.colors, randomColor]});
   }
   addNewColor = newColor => {
     this.setState({colors: [...this.state.colors, newColor ]})
@@ -55,7 +62,7 @@ class NewPaletteForm extends Component {
 
   renderDrawer(){
     const { classes, maxColors } = this.props;
-    const { open , currentColor, newName, colors } = this.state;
+    const { open , colors } = this.state;
     const paletteIsFull = colors.length >= maxColors;
     return (
       <Drawer
