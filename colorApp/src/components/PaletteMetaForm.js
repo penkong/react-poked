@@ -29,7 +29,7 @@ class PaletteMetaForm extends Component {
   handleChange = e => this.setState({[e.target.name]: e.target.value});
 
   render () {
-    const { hideForm , handleSubmit } = this.props;
+    const { hideForm } = this.props;
     const { stage, newPaletteName } = this.state;
     return (
       <div>
