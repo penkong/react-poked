@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import AddToPhotosIcon from '@material-ui/icons/AddToPhotosIcon';
+import AddToPhotos from '@material-ui/icons/AddToPhotos';
 import Button from '@material-ui/core/Button';
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from '../styles/PaletteFormNavStyles';
@@ -36,7 +36,7 @@ class PaletteFormNav extends Component {
               edge="start"
               className={classnames(classes.menuButton, {[classes.hide] : open })}
             >
-              <AddToPhotosIcon />
+              <AddToPhotos/>
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Create Palette

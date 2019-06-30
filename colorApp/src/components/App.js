@@ -13,8 +13,10 @@ import { generatePalette } from './helpers/colorHelpers';
 
 class App extends Component {
 
-  state = { palette: seedColors };
-
+  state = { palette: this.savedPalettes() || seedColors };
+  savedPalettes = () => {
+    JSON.parse(window.localStorage.getItem("palette"));
+  }
   findPalette = id => {
     return this.state.palette.find(palette => {
       return palette.id === id;
@@ -22,9 +24,11 @@ class App extends Component {
   }
 
   savePalette = newPalette => {
-    this.setState({ palette : [...this.state.palette, newPalette]})
+    this.setState({ palette : [...this.state.palette, newPalette]}, this.syncLocalStorage);
   }
-
+  syncLocalStorage = () => {
+    window.localStorage.setItem("palette", JSON.stringify(this.state.palette));
+  }
   // to pass every field in props individually we use ...
   render() {
     // console.log(generatePalette(seedColors[4]));
