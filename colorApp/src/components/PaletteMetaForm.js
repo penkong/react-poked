@@ -22,6 +22,7 @@ class PaletteMetaForm extends Component {
     //cl emoji
     const newPalette = {paletteName: this.state.newPaletteName, emoji:emoji.native};
     this.props.handleSubmit(newPalette);
+    this.setState({stage: ""});
   }
   showEmojiPicker = () => {
     this.setState({stage: "emoji"});
