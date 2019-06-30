@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import sizes from './sizes';
 
 
 export default  {
@@ -12,6 +13,22 @@ export default  {
     marginBottom: "-4.5px",
     "&:hover button": {
       opacity: "1",
+    },
+    // 0 up 500px
+    // "@media (max-width: 500px)":{
+    //   width: "100%",
+    // }
+    [sizes.down("lg")] : {
+      width: "25%",
+      height: props => props.showFullPalette ? "20%" : "40%",
+    },
+    [sizes.down("md")] : {
+      width: "50%",
+      height: props => props.showFullPalette ? "10%" : "20%",
+    },
+    [sizes.down("xs")] : {
+      width: "100%",
+      height: props => props.showFullPalette ? "5%" : "10%",
     }
   },
   copyText: {
