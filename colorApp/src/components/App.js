@@ -13,7 +13,7 @@ import { generatePalette } from './helpers/colorHelpers';
 
 class App extends Component {
 
-  state = { palette: this.savedPalettes() || seedColors };
+  state = { palette: this.savedPalettes || seedColors };
   savedPalettes = () => {
     JSON.parse(window.localStorage.getItem("palette"));
   }
