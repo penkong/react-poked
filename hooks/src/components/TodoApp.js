@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 
 const TodoApp = () => {
   // state
-  const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodosState('');
+  // const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodosState('');
   // like lifeCycle trace changes
   return (
     <Paper 
@@ -32,13 +32,8 @@ const TodoApp = () => {
         <Grid container justify='center' style={{marginTop: "1rem"}}>
           <Grid item xs={11} md={8} lg={6}>
             <TodosProvider>
-              <TodoForm addTodo={addTodo}/>
-              <TodoList 
-                todos={todos} 
-                removeTodo={removeTodo} 
-                toggleTodo={toggleTodo}
-                editTodo={editTodo}
-              />
+              <TodoForm/>
+              <TodoList/>
             </TodosProvider>
           </Grid>
         </Grid>
