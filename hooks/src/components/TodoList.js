@@ -10,13 +10,11 @@ const TodoList = ({todos, removeTodo, toggleTodo, editTodo}) => {
     return (
       <Paper>
         <List>
-          {todos.map(({id,task,completed}, index)=> (
+          {todos.map((todos, index)=> (
             <>
               <Todo 
-                id={id}
-                key={id} 
-                task={task} 
-                completed={completed}
+                {...todos}
+                key={todos.id} 
                 removeTodo={removeTodo}
                 toggleTodo={toggleTodo}
                 editTodo={editTodo}
