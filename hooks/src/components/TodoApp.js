@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import useTodos from '../hooks/useTodos';
+import React from 'react';
+import { TodosProvider } from '../contexts/todos.context';
+import useTodosState from '../hooks/useTodosState';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
@@ -10,21 +11,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 
 const TodoApp = () => {
-  // default props
-  const initTodos = JSON.parse(window.localStorage.getItem("todos")) || "[]"
   // state
-  const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodos(initTodos);
-  // const initTodos = [
-  //   {id: 1, task: "clean", completed: false},
-  //   {id: 2, task: "eat", completed: true},
-  //   {id: 3, task: "sleep", completed: false}
-  // ];
+  const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodosState('');
   // like lifeCycle trace changes
-  useEffect(()=> {
-    // obj to json
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  },[todos]);
-
   return (
     <Paper 
       style={{
@@ -42,13 +31,15 @@ const TodoApp = () => {
         </AppBar>
         <Grid container justify='center' style={{marginTop: "1rem"}}>
           <Grid item xs={11} md={8} lg={6}>
-            <TodoForm addTodo={addTodo}/>
-            <TodoList 
-              todos={todos} 
-              removeTodo={removeTodo} 
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+            <TodosProvider>
+              <TodoForm addTodo={addTodo}/>
+              <TodoList 
+                todos={todos} 
+                removeTodo={removeTodo} 
+                toggleTodo={toggleTodo}
+                editTodo={editTodo}
+              />
+            </TodosProvider>
           </Grid>
         </Grid>
     </Paper>
@@ -56,3 +47,13 @@ const TodoApp = () => {
 }
 
 export default TodoApp;
+
+{/* <TodosProvider>
+  <TodoForm addTodo={addTodo}/>
+  <TodoList 
+    todos={todos} 
+    removeTodo={removeTodo} 
+    toggleTodo={toggleTodo}
+    editTodo={editTodo}
+  />
+</TodosProvider> */}
