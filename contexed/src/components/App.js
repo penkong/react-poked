@@ -3,8 +3,8 @@ import React from 'react';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import PageContent from './PageContent';
-import Navbar from './Navbar';
-import Form from './Form';
+import NavbarF from './NavbarF';
+import FormF from './FormF';
 
 function App(){
   return (
@@ -12,8 +12,8 @@ function App(){
       {/* there is context provider here come from theme pro */}
       <LanguageProvider>
         <PageContent>
-          <Navbar/>
-          <Form/>
+          <NavbarF/>
+          <FormF/>
         </PageContent>
       </LanguageProvider>
     </ThemeProvider>
