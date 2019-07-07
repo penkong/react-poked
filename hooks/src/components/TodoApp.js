@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import uuid from 'uuid/v4';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -11,13 +11,19 @@ import Grid from "@material-ui/core/Grid";
 
 const TodoApp = () => {
   // default props
-  const initTodos = [
-    {id: 1, task: "clean", completed: false},
-    {id: 2, task: "eat", completed: true},
-    {id: 3, task: "sleep", completed: false}
-  ];
+  const initTodos = JSON.parse(window.localStorage.getItem("todos")) || "[]"
+  // const initTodos = [
+  //   {id: 1, task: "clean", completed: false},
+  //   {id: 2, task: "eat", completed: true},
+  //   {id: 3, task: "sleep", completed: false}
+  // ];
   // state
   const [todos,setTodos] = useState(initTodos);
+  // like lifeCycle trace changes
+  useEffect(()=> {
+    // obj to json
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  },[todos]);
 
   const addTodo = newTodoText => {
     setTodos([...todos, {id: uuid(), task: newTodoText, completed: false}]);
