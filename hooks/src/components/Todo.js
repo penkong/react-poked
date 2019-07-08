@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodosContext } from '../contexts/todos.context';
+import { DispatchContext } from '../contexts/todos.context';
 import EditTodoForm from './EditTodoForm';
 import useToggleState from '../hooks/useToggleState';
 
@@ -14,30 +14,30 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 const Todo = ({id, task, completed}) => {
   const [isEditing, toggle] = useToggleState();
   // const { removeTodo, toggleTodo } = useContext(TodosContext);
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   return (
     <ListItem style={{height: "64px"}}>
       {
         isEditing 
-        ? <EditTodoForm 
-            id={id} 
-            task={task} 
-            toggleEditForm={toggle}
-          />
-        : <>
-            <Checkbox tabIndex={-1} checked={completed} onClick={()=> dispatch({type: "TOGGLE", id})}/>
-            <ListItemText style={{ textDecoration: completed ? "line-through" : "none"}}>
-              {task}
-            </ListItemText>
-            <ListItemSecondaryAction>
-              <IconButton aria-label="Delete" onClick={()=> dispatch({type: "REMOVE", id })}>
-                <DeleteIcon/>
-              </IconButton>
-              <IconButton aria-label="Edit" onClick={toggle}>
-                <EditIcon/>
-              </IconButton>
-            </ListItemSecondaryAction>
-          </>
+          ? <EditTodoForm 
+              id={id} 
+              task={task} 
+              toggleEditForm={toggle}
+            />
+          : <>
+              <Checkbox tabIndex={-1} checked={completed} onClick={()=> dispatch({type: "TOGGLE", id})}/>
+              <ListItemText style={{ textDecoration: completed ? "line-through" : "none"}}>
+                {task}
+              </ListItemText>
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Delete" onClick={()=> dispatch({type: "REMOVE", id })}>
+                  <DeleteIcon/>
+                </IconButton>
+                <IconButton aria-label="Edit" onClick={toggle}>
+                  <EditIcon/>
+                </IconButton>
+              </ListItemSecondaryAction>
+            </>
       }
       
     </ListItem>

@@ -10,14 +10,16 @@ const defTodos = [
 ]
 // for child
 export const TodosContext = createContext();
-
+export const DispatchContext = createContext();
 // for parent
 export function TodosProvider(props) {
   // const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodosState(defTodos);
   const [todos, dispatch] = useReducer(todoReducer, defTodos);
   return (
-    <TodosContext.Provider value={{todos, dispatch}}>
-      {props.children}
+    <TodosContext.Provider value={todos}>
+      <DispatchContext.Provider value={dispatch}>
+        {props.children}
+      </DispatchContext.Provider>
     </TodosContext.Provider>
   )
 }
