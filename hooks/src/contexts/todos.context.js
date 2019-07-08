@@ -1,5 +1,7 @@
 // keep tracks of todos.
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import todoReducer from '../reducers/todos.reducer';
+
 import useTodosState from '../hooks/useTodosState';
 
 const defTodos = [
@@ -11,9 +13,10 @@ export const TodosContext = createContext();
 
 // for parent
 export function TodosProvider(props) {
-  const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodosState(defTodos);
+  // const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodosState(defTodos);
+  const [todos, dispatch] = useReducer(todoReducer, defTodos);
   return (
-    <TodosContext.Provider value={{todos, addTodo, removeTodo, toggleTodo, editTodo}}>
+    <TodosContext.Provider value={{todos, dispatch}}>
       {props.children}
     </TodosContext.Provider>
   )

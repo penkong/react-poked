@@ -7,10 +7,11 @@ import TextField from "@material-ui/core/TextField";
 
 const TodoForm = (props) => {
   const [value, handleChange, reset] = useInputState('');
-  const { addTodo } = useContext(TodosContext);
+  // const { addTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
   const submit = e=> {
     e.preventDefault();
-    addTodo(value);
+    dispatch({type: "ADD", task: value});
     reset();
   }
   return (
