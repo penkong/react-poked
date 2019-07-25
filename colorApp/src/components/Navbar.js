@@ -18,7 +18,7 @@ class Navbar extends Component {
     const { classes } = this.props
     return(
       <div className={classes.logo}>
-        <NavLink to="/">reactcolorswithit</NavLink>
+        <NavLink to="/">React Colors</NavLink>
       </div>
     )
   }
